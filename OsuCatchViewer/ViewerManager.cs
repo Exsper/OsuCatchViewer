@@ -9,6 +9,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Color = OpenTK.Graphics.Color4;
 
 namespace OsuCatchViewer
 {
@@ -19,7 +20,8 @@ namespace OsuCatchViewer
         public IBeatmap Beatmap { get; set; }
         public ReplayAPI.Mods BeatmapMods { get; set; }
         public List<PalpableCatchHitObject> CatchHitObjects { get; set; }
-        public List<PalpableCatchHitObject> NearbyHitObjects { get; set; }
+        public List<HasColorHitObject> HasColorHitObject { get; set; }
+        public List<HasColorHitObject> NearbyHitObjects { get; set; }
         private List<List<ReplayAPI.ReplayFrame>?> ReplayFrames { get; set; }
         public List<List<ReplayAPI.ReplayFrame>> NearbyFrames { get; set; }
         public SongPlayer SongPlayer { get; set; }
@@ -77,7 +79,7 @@ namespace OsuCatchViewer
             State_PlaybackFlow = 0;
             State_PlaybackMode = 1;
             MaxSongTime = 0;
-            NearbyHitObjects = new List<PalpableCatchHitObject>();
+            NearbyHitObjects = new List<HasColorHitObject>();
             ReplayFrames = new List<List<ReplayAPI.ReplayFrame>?>();
             NearbyFrames = new List<List<ReplayAPI.ReplayFrame>>();
             State_TimeRange = 100;
@@ -114,6 +116,9 @@ namespace OsuCatchViewer
             JumpTo(FirstHitObjectTime - 1000);
 
             State_PlaybackFlow = 0;
+
+            HasColorHitObject = CatchBeatmapAPI.GetTipColors(this.CatchHitObjects, this.Beatmap);
+
             /*
             if (r.ReplayFrames.Count > 0)
             {
@@ -228,7 +233,7 @@ namespace OsuCatchViewer
 
         private void Tick_Beatmap()
         {
-            this.NearbyHitObjects = new List<PalpableCatchHitObject>();
+            this.NearbyHitObjects = new List<HasColorHitObject>();
             float time = (float)this.SongPlayer.SongTime;
             int startIndex = this.HitObjectsLowerBound(time);
             int endIndex = this.HitObjectsUpperBound(time);
@@ -242,7 +247,7 @@ namespace OsuCatchViewer
                 {
                     break;
                 }
-                this.NearbyHitObjects.Add(this.CatchHitObjects[k]);
+                this.NearbyHitObjects.Add(this.HasColorHitObject[k]);
             }
         }
 

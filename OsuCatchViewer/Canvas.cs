@@ -3,6 +3,7 @@ using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Catch.Objects;
+using OsuCatchViewer.CatchAPI;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -316,9 +317,9 @@ namespace OsuCatchViewer
             float fruitSpeed = 384 / viewerManager.ApproachTime;
             for (int b = viewerManager.NearbyHitObjects.Count - 1; b >= 0; b--)
             {
-                PalpableCatchHitObject hitObject = viewerManager.NearbyHitObjects[b];
+                HasColorHitObject hitObject = viewerManager.NearbyHitObjects[b];
                 // the song time relative to the hitobject start time
-                float diff = (float)(hitObject.StartTime - viewerManager.SongPlayer.SongTime);
+                float diff = (float)(hitObject.GetHitObject().StartTime - viewerManager.SongPlayer.SongTime);
                 // 0=在顶端 1=在判定线上 >1=超过判定线
                 float alpha = 1.0f;
                 if (diff < viewerManager.ApproachTime * viewerManager.State_ARMul && diff > -(viewerManager.ApproachTime * (viewerManager.State_ARMul - 1)))
@@ -366,8 +367,10 @@ namespace OsuCatchViewer
             GL.Enable(EnableCap.Texture2D);
         }
 
-        private void DrawHitcircle(PalpableCatchHitObject hitObject, float alpha, int circleDiameter)
+        private void DrawHitcircle(HasColorHitObject hasColorHitObject, float alpha, int circleDiameter)
         {
+            PalpableCatchHitObject hitObject = hasColorHitObject.GetHitObject();
+            Color color = hasColorHitObject.GetColor();
             Vector2 pos = new Vector2(hitObject.EffectiveX, 384 * alpha - this.CatcherAreaHeight);
             if (hitObject is TinyDroplet)
             {
@@ -383,14 +386,17 @@ namespace OsuCatchViewer
                 else
                     this.DrawHitcircle(DropTexture, pos, (int)(circleDiameter * hitObject.Scale), new Color(1.0f, 1.0f, 1.0f, 1.0f));
             }
-            else if(hitObject is Fruit)
+            else if (hitObject is Fruit)
             {
                 if (hitObject.HyperDash)
                     this.DrawHitcircle(hitCircleTexture, pos, circleDiameter, new Color(1.0f, 0f, 0f, 1.0f));
                 else
                     this.DrawHitcircle(hitCircleTexture, pos, circleDiameter, new Color(1.0f, 1.0f, 1.0f, 1.0f));
             }
-            else if (hitObject is Banana) this.DrawHitcircle(BananaTexture, pos, circleDiameter, new Color(1.0f, 1.0f, 0f, 1.0f));
+            else if (hitObject is Banana)
+            {
+                this.DrawHitcircle(BananaTexture, pos, circleDiameter, color);
+            }
         }
 
         private void DrawHitcircle(Texture2D texture, Vector2 pos, int diameter, Color color)

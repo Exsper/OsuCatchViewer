@@ -15,6 +15,8 @@ using osu.Framework.IO.Network;
 using osu.Game.Rulesets.Catch.Beatmaps;
 using osu.Game.Rulesets.Catch.Objects;
 using osu.Game.Rulesets.Objects;
+using Color = OpenTK.Graphics.Color4;
+using osu.Framework.Input.Events;
 
 namespace OsuCatchViewer.CatchAPI
 {
@@ -169,6 +171,38 @@ namespace OsuCatchViewer.CatchAPI
 
             return palpableObjects;
         }
+
+        public static List<HasColorHitObject> GetTipColors(List<PalpableCatchHitObject> palpableObjects, IBeatmap beatmap)
+        {
+            Color[] _allColors = new Color[palpableObjects.Count];
+            for (int i = 0; i < palpableObjects.Count; i++)
+            {
+                _allColors[i] = Color.Yellow;
+            }
+
+            List<Color> allColors = _allColors.ToList();
+
+            // 标记路径
+            List<BananaGroup> bananaGroups = BananaTipBuilder.GetBananaGroups(palpableObjects);
+
+            foreach (var bananaGroup in bananaGroups)
+            {
+                List<Color> colors = bananaGroup.LongestPath(beatmap.Difficulty.CircleSize);
+                int startIndex = bananaGroup.FirstBananaIndex;
+                int endIndex = startIndex + bananaGroup.hasTipBananas.Count;
+                for (int i = startIndex; i < endIndex; i++)
+                {
+                    allColors[i] = colors[i - startIndex];
+                }
+            }
+            List<HasColorHitObject> hasColorHitObject = new List<HasColorHitObject>();
+            for (int i = 0; i < palpableObjects.Count; i++)
+            {
+                hasColorHitObject.Add(new HasColorHitObject(palpableObjects[i], allColors[i]));
+            }
+            return hasColorHitObject;
+        }
+
 
         public static string GetBeatmapTitle(IBeatmap beatmap)
         {
