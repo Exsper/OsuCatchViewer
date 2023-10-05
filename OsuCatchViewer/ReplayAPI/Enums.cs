@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ReplayAPI
+﻿namespace ReplayAPI
 {
     [Flags]
     public enum Keys

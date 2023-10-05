@@ -1,6 +1,3 @@
-using System.Drawing;
-using System.Windows.Forms;
-
 namespace OsuCatchViewer
 {
     public class Timeline : Control
@@ -19,7 +16,7 @@ namespace OsuCatchViewer
         }
         public List<double>[] BananaShowerPercent
         {
-            get { return this.bananaShowerPercent; } 
+            get { return this.bananaShowerPercent; }
             set
             {
                 if (value != this.bananaShowerPercent)

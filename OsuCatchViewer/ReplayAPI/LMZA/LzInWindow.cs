@@ -1,7 +1,5 @@
 // LzInWindow.cs
 
-using System;
-
 namespace SevenZip.Compression.LZ
 {
     public class InWindow

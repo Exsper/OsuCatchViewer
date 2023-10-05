@@ -1,7 +1,5 @@
 ﻿using SevenZip;
 using SevenZip.Compression.LZMA;
-using System;
-using System.IO;
 
 namespace ReplayAPI
 {

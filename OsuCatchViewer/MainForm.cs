@@ -1,15 +1,5 @@
-using OpenTK.Input;
-using osu.Framework.Extensions.ObjectExtensions;
-using osu.Game.Beatmaps;
 using OsuCatchViewer.CatchAPI;
-using SharpCompress.Common;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Runtime.CompilerServices;
-using System.Timers;
-using System.Windows.Forms;
 
 
 namespace OsuCatchViewer

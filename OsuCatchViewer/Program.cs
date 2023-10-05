@@ -1,8 +1,6 @@
 using Microsoft.Win32;
-using OsuCatchViewer;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
 
 namespace OsuCatchViewer
 {

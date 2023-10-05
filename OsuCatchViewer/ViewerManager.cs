@@ -1,15 +1,6 @@
 ﻿using osu.Game.Beatmaps;
-using OpenTK;
 using osu.Game.Rulesets.Catch.Objects;
 using OsuCatchViewer.CatchAPI;
-using OpenTK.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using Color = OpenTK.Graphics.Color4;
 
 namespace OsuCatchViewer
 {
@@ -167,7 +158,7 @@ namespace OsuCatchViewer
             LoadBeatmap(beatmapPath, mods);
         }
 
-        private bool IsConflictMod(ReplayAPI.Replay r1,  ReplayAPI.Replay r2)
+        private bool IsConflictMod(ReplayAPI.Replay r1, ReplayAPI.Replay r2)
         {
             if (r1.Mods.HasFlag(ReplayAPI.Mods.Easy) ^ r2.Mods.HasFlag(ReplayAPI.Mods.Easy)) return true;
             if (r1.Mods.HasFlag(ReplayAPI.Mods.HardRock) ^ r2.Mods.HasFlag(ReplayAPI.Mods.HardRock)) return true;
@@ -213,9 +204,9 @@ namespace OsuCatchViewer
             {
                 LoadBeatmapFromReplay(r.MapHash, (int)r.Mods);
                 bool deletedReplay = false;
-                for(int i = 0; i < CurrentReplays.Count; i++)
+                for (int i = 0; i < CurrentReplays.Count; i++)
                 {
-                    if(i != slotIndex && CurrentReplays[i]!= null && IsConflictMod(r, CurrentReplays[i]))
+                    if (i != slotIndex && CurrentReplays[i] != null && IsConflictMod(r, CurrentReplays[i]))
                     {
                         UnloadReplay(i);
                         deletedReplay = true;

@@ -1,22 +1,15 @@
-﻿using osu.Game.IO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using osu.Game.Rulesets;
-using osu.Game.Rulesets.Catch;
+﻿using osu.Framework.Audio.Track;
+using osu.Framework.Graphics.Textures;
 using osu.Game.Beatmaps;
 using osu.Game.Beatmaps.Formats;
-using osu.Game.Skinning;
-using osu.Game.Rulesets.Mods;
-using osu.Framework.Audio.Track;
-using osu.Framework.Graphics.Textures;
-using osu.Framework.IO.Network;
-using osu.Game.Rulesets.Catch.Beatmaps;
+using osu.Game.IO;
+using osu.Game.Rulesets;
+using osu.Game.Rulesets.Catch;
 using osu.Game.Rulesets.Catch.Objects;
+using osu.Game.Rulesets.Mods;
 using osu.Game.Rulesets.Objects;
+using osu.Game.Skinning;
 using Color = OpenTK.Graphics.Color4;
-using osu.Framework.Input.Events;
 
 namespace OsuCatchViewer.CatchAPI
 {

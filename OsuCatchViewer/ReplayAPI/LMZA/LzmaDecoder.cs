@@ -1,7 +1,6 @@
 // LzmaDecoder.cs
 
 using SevenZip.Compression.RangeCoder;
-using System;
 
 namespace SevenZip.Compression.LZMA
 {

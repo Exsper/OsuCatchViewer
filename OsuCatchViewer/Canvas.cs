@@ -1,16 +1,9 @@
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
-using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Catch.Objects;
 using OsuCatchViewer.CatchAPI;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Timers;
-using System.Windows.Forms;
 using Color = OpenTK.Graphics.Color4;
-using Rectangle = System.Drawing.Rectangle;
 
 namespace OsuCatchViewer
 {
@@ -343,7 +336,7 @@ namespace OsuCatchViewer
         }
 
 
-        public void DrawHelp ()
+        public void DrawHelp()
         {
             GL.MatrixMode(MatrixMode.Projection);
             GL.PushMatrix();
@@ -412,6 +405,6 @@ namespace OsuCatchViewer
         }
 
 
-        
+
     }
 }

@@ -1,6 +1,5 @@
 // CommandLineParser.cs
 
-using System;
 using System.Collections;
 
 namespace SevenZip.CommandLineParser

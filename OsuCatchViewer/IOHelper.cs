@@ -1,11 +1,6 @@
-﻿using System;
-using System.IO;
-using OsuMemoryDataProvider;
-using Microsoft.Win32;
+﻿using OsuMemoryDataProvider;
 using OsuMemoryDataProvider.OsuMemoryModels;
 using OsuMemoryDataProvider.OsuMemoryModels.Direct;
-using osu.Game.Screens.Edit;
-using SevenZip.Compression.LZ;
 
 namespace OsuCatchViewer
 {

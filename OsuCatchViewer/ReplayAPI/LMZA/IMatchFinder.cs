@@ -1,7 +1,5 @@
 // IMatchFinder.cs
 
-using System;
-
 namespace SevenZip.Compression.LZ
 {
     interface IInWindowStream

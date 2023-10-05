@@ -1,11 +1,4 @@
 ﻿using osu.Game.Rulesets.Catch.Objects;
-using osu.Game.Rulesets.Objects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using Color = OpenTK.Graphics.Color4;
 
 namespace OsuCatchViewer.CatchAPI
@@ -15,7 +8,8 @@ namespace OsuCatchViewer.CatchAPI
     {
         private PalpableCatchHitObject HitObject { get; set; }
         private Color Color { get; set; }
-        public HasColorHitObject(PalpableCatchHitObject hitObject, Color color) { 
+        public HasColorHitObject(PalpableCatchHitObject hitObject, Color color)
+        {
             this.HitObject = hitObject;
             this.Color = color;
         }
@@ -78,7 +72,7 @@ namespace OsuCatchViewer.CatchAPI
             for (int ni = 0; ni <= n + 1; ni++)
             {
                 G[ni] = new double[n + 2];
-                for(int nj = 0; nj < n + 2; nj++)
+                for (int nj = 0; nj < n + 2; nj++)
                 {
                     G[ni][nj] = -1;
                 }
@@ -189,7 +183,7 @@ namespace OsuCatchViewer.CatchAPI
 
     public static class BananaTipBuilder
     {
-        public static List<BananaGroup> GetBananaGroups (List<PalpableCatchHitObject> palpableCatchHitObjects)
+        public static List<BananaGroup> GetBananaGroups(List<PalpableCatchHitObject> palpableCatchHitObjects)
         {
             List<BananaGroup> bananaGroups = new List<BananaGroup>();
             for (int i = 0; i < palpableCatchHitObjects.Count; i++)
@@ -214,7 +208,7 @@ namespace OsuCatchViewer.CatchAPI
                     {
                         bananaGroups.Last().AddBanana(palpableCatchHitObjects[i]);
                     }
-                    if (i + 1 >=  palpableCatchHitObjects.Count)
+                    if (i + 1 >= palpableCatchHitObjects.Count)
                     {
                         bananaGroups.Last().EndObj = null;
                     }

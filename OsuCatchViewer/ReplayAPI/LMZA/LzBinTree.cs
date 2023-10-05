@@ -1,7 +1,5 @@
 // LzBinTree.cs
 
-using System;
-
 namespace SevenZip.Compression.LZ
 {
     public class BinTree : InWindow, IMatchFinder
