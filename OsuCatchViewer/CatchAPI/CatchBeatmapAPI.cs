@@ -165,7 +165,7 @@ namespace OsuCatchViewer.CatchAPI
             return palpableObjects;
         }
 
-        public static List<HasColorHitObject> GetTipColors(List<PalpableCatchHitObject> palpableObjects, IBeatmap beatmap)
+        public static List<HasColorHitObject> GetTipColors(List<PalpableCatchHitObject> palpableObjects, IBeatmap beatmap, ref int catchedBananas, int difficultyLevel)
         {
             Color[] _allColors = new Color[palpableObjects.Count];
             for (int i = 0; i < palpableObjects.Count; i++)
@@ -178,9 +178,11 @@ namespace OsuCatchViewer.CatchAPI
             // 标记路径
             List<BananaGroup> bananaGroups = BananaTipBuilder.GetBananaGroups(palpableObjects);
 
+            catchedBananas = 0;
+
             foreach (var bananaGroup in bananaGroups)
             {
-                List<Color> colors = bananaGroup.LongestPath(beatmap.Difficulty.CircleSize);
+                List<Color> colors = bananaGroup.LongestPath(beatmap.Difficulty.CircleSize, ref catchedBananas, difficultyLevel);
                 int startIndex = bananaGroup.FirstBananaIndex;
                 int endIndex = startIndex + bananaGroup.hasTipBananas.Count;
                 for (int i = startIndex; i < endIndex; i++)

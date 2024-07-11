@@ -80,12 +80,18 @@
             NoneRadioButton = new RadioButton();
             label6 = new Label();
             Canvas = new Canvas();
+            panel4 = new Panel();
+            BananaDifficulty3RadioButton = new RadioButton();
+            BananaDifficulty2RadioButton = new RadioButton();
+            BananaDifficulty1RadioButton = new RadioButton();
+            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)timeWindowBar).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)volumeBar).BeginInit();
             menuStrip1.SuspendLayout();
             panel3.SuspendLayout();
+            panel4.SuspendLayout();
             SuspendLayout();
             // 
             // playBtn
@@ -410,11 +416,11 @@
             // volumeBar
             // 
             volumeBar.Anchor = AnchorStyles.Right;
-            volumeBar.Location = new Point(1054, 146);
+            volumeBar.Location = new Point(1063, 141);
             volumeBar.Margin = new Padding(4);
             volumeBar.Name = "volumeBar";
             volumeBar.Orientation = Orientation.Vertical;
-            volumeBar.Size = new Size(45, 544);
+            volumeBar.Size = new Size(45, 98);
             volumeBar.TabIndex = 22;
             volumeBar.TickStyle = TickStyle.Both;
             volumeBar.Value = 10;
@@ -424,7 +430,7 @@
             // 
             label4.Anchor = AnchorStyles.Right;
             label4.AutoSize = true;
-            label4.Location = new Point(1045, 125);
+            label4.Location = new Point(1031, 120);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
             label4.Size = new Size(44, 17);
@@ -435,7 +441,7 @@
             // 
             volumeBarLabel.Anchor = AnchorStyles.Right;
             volumeBarLabel.AutoSize = true;
-            volumeBarLabel.Location = new Point(1091, 125);
+            volumeBarLabel.Location = new Point(1083, 120);
             volumeBarLabel.Margin = new Padding(4, 0, 4, 0);
             volumeBarLabel.Name = "volumeBarLabel";
             volumeBarLabel.Size = new Size(44, 17);
@@ -569,6 +575,11 @@
             // timeline
             // 
             timeline.Anchor = AnchorStyles.Bottom;
+            timeline.BananaShowerPercent = new List<double>[]
+    {
+    null,
+    null
+    };
             timeline.Location = new Point(129, 701);
             timeline.Margin = new Padding(4);
             timeline.Name = "timeline";
@@ -641,9 +652,65 @@
             Canvas.Location = new Point(129, 113);
             Canvas.Margin = new Padding(4, 4, 4, 4);
             Canvas.Name = "Canvas";
+            Canvas.ShowHelp = 0;
             Canvas.Size = new Size(888, 564);
             Canvas.TabIndex = 33;
             Canvas.VSync = false;
+            // 
+            // panel4
+            // 
+            panel4.Controls.Add(BananaDifficulty3RadioButton);
+            panel4.Controls.Add(BananaDifficulty2RadioButton);
+            panel4.Controls.Add(BananaDifficulty1RadioButton);
+            panel4.Controls.Add(label7);
+            panel4.Location = new Point(1031, 246);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(104, 132);
+            panel4.TabIndex = 34;
+            // 
+            // BananaDifficulty3RadioButton
+            // 
+            BananaDifficulty3RadioButton.AutoSize = true;
+            BananaDifficulty3RadioButton.Checked = true;
+            BananaDifficulty3RadioButton.Location = new Point(15, 90);
+            BananaDifficulty3RadioButton.Name = "BananaDifficulty3RadioButton";
+            BananaDifficulty3RadioButton.Size = new Size(86, 21);
+            BananaDifficulty3RadioButton.TabIndex = 3;
+            BananaDifficulty3RadioButton.TabStop = true;
+            BananaDifficulty3RadioButton.Text = "较难 (未知)";
+            BananaDifficulty3RadioButton.UseVisualStyleBackColor = true;
+            BananaDifficulty3RadioButton.CheckedChanged += BananaDifficulty3RadioButton_CheckedChanged;
+            // 
+            // BananaDifficulty2RadioButton
+            // 
+            BananaDifficulty2RadioButton.AutoSize = true;
+            BananaDifficulty2RadioButton.Location = new Point(15, 63);
+            BananaDifficulty2RadioButton.Name = "BananaDifficulty2RadioButton";
+            BananaDifficulty2RadioButton.Size = new Size(86, 21);
+            BananaDifficulty2RadioButton.TabIndex = 2;
+            BananaDifficulty2RadioButton.Text = "一般 (未知)";
+            BananaDifficulty2RadioButton.UseVisualStyleBackColor = true;
+            BananaDifficulty2RadioButton.CheckedChanged += BananaDifficulty2RadioButton_CheckedChanged;
+            // 
+            // BananaDifficulty1RadioButton
+            // 
+            BananaDifficulty1RadioButton.AutoSize = true;
+            BananaDifficulty1RadioButton.Location = new Point(15, 36);
+            BananaDifficulty1RadioButton.Name = "BananaDifficulty1RadioButton";
+            BananaDifficulty1RadioButton.Size = new Size(86, 21);
+            BananaDifficulty1RadioButton.TabIndex = 1;
+            BananaDifficulty1RadioButton.Text = "简单 (未知)";
+            BananaDifficulty1RadioButton.UseVisualStyleBackColor = true;
+            BananaDifficulty1RadioButton.CheckedChanged += BananaDifficulty1RadioButton_CheckedChanged;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(0, 9);
+            label7.Name = "label7";
+            label7.Size = new Size(56, 17);
+            label7.TabIndex = 0;
+            label7.Text = "香蕉路线";
             // 
             // MainForm
             // 
@@ -651,6 +718,7 @@
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1148, 864);
+            Controls.Add(panel4);
             Controls.Add(Canvas);
             Controls.Add(panel3);
             Controls.Add(pressBtn);
@@ -690,6 +758,8 @@
             menuStrip1.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -748,6 +818,11 @@
         private RadioButton HRRadioButton;
         private ToolStripMenuItem 获取osu当前谱面ToolStripMenuItem;
         private Canvas Canvas;
+        private Panel panel4;
+        private Label label7;
+        public RadioButton BananaDifficulty3RadioButton;
+        public RadioButton BananaDifficulty2RadioButton;
+        public RadioButton BananaDifficulty1RadioButton;
     }
 }
 

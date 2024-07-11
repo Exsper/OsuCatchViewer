@@ -8,7 +8,6 @@ namespace OsuCatchViewer
     {
         [DllImport("user32.dll")]
         private static extern bool SetProcessDPIAware();
-        public const string BUILD_DATE = "2023-10-03 (modified from ReplayViewer)";
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>

@@ -85,7 +85,7 @@ namespace OsuCatchViewer
 
         private void Main_Load(object sender, EventArgs e)
         {
-            this.Text += " build " + Program.BUILD_DATE;
+            this.Text += " v" + Application.ProductVersion;
             this.Canvas.Init();
         }
 
@@ -221,6 +221,16 @@ namespace OsuCatchViewer
                 this.UpdateTitle();
                 this.volumeBar_Scroll(null, null);
                 this.Canvas.ShowHelp = 0;
+
+                if (this.Canvas.viewerManager != null)
+                {
+                    BananaDifficulty1RadioButton.Text = "简单(" + this.Canvas.viewerManager.catchedBananas1 + ")";
+                    BananaDifficulty2RadioButton.Text = "一般(" + this.Canvas.viewerManager.catchedBananas2 + ")";
+                    BananaDifficulty3RadioButton.Text = "较难(" + this.Canvas.viewerManager.catchedBananas3 + ")";
+                    if (BananaDifficulty1RadioButton.Checked) this.Canvas.viewerManager.HasColorHitObjects = this.Canvas.viewerManager.HasColorHitObjects1;
+                    if (BananaDifficulty2RadioButton.Checked) this.Canvas.viewerManager.HasColorHitObjects = this.Canvas.viewerManager.HasColorHitObjects2;
+                    if (BananaDifficulty3RadioButton.Checked) this.Canvas.viewerManager.HasColorHitObjects = this.Canvas.viewerManager.HasColorHitObjects3;
+                }
 
                 List<double>[] bananaShowerPercent = CatchBeatmapAPI.BananaShowerTime(this.Canvas.viewerManager.Beatmap, this.Canvas.viewerManager.MaxSongTime);
                 timeline.BananaShowerPercent = bananaShowerPercent;
@@ -368,8 +378,11 @@ namespace OsuCatchViewer
 
         private void volumeBar_Scroll(object sender, EventArgs e)
         {
-            this.Canvas.viewerManager.State_Volume = this.volumeBar.Value * 0.1f;
-            this.volumeBarLabel.Text = String.Format("{0} %", this.volumeBar.Value * 10);
+            if (this.Canvas.viewerManager != null)
+            {
+                this.Canvas.viewerManager.State_Volume = this.volumeBar.Value * 0.1f;
+                this.volumeBarLabel.Text = String.Format("{0} %", this.volumeBar.Value * 10);
+            }
         }
 
         private void speed025Radio_CheckedChanged(object sender, EventArgs e)
@@ -655,6 +668,24 @@ namespace OsuCatchViewer
         private void EZRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             ReloadBeatmapWithMod();
+        }
+
+        private void BananaDifficulty1RadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.Canvas.viewerManager != null)
+                this.Canvas.viewerManager.HasColorHitObjects = this.Canvas.viewerManager.HasColorHitObjects1;
+        }
+
+        private void BananaDifficulty2RadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.Canvas.viewerManager != null)
+                this.Canvas.viewerManager.HasColorHitObjects = this.Canvas.viewerManager.HasColorHitObjects2;
+        }
+
+        private void BananaDifficulty3RadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.Canvas.viewerManager != null)
+                this.Canvas.viewerManager.HasColorHitObjects = this.Canvas.viewerManager.HasColorHitObjects3;
         }
     }
 }

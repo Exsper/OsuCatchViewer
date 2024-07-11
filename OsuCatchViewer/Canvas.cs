@@ -56,7 +56,7 @@ namespace OsuCatchViewer
 
             }
             this.SwapBuffers();
-            System.Threading.Thread.Sleep(16);
+            System.Threading.Thread.Sleep(4);
             this.Resize += Canvas_Resize;
         }
 

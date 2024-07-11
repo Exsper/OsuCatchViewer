@@ -48,7 +48,7 @@ namespace OsuCatchViewer.CatchAPI
         /// <summary>
         /// 有向最长路径算法
         /// </summary>
-        public List<Color> LongestPath(double CircleSize)
+        public List<Color> LongestPath(double CircleSize, ref int catchBananaCount, int difficultyLevel)
         {
             this.CATCHER_BASE_SIZE = 106.75;
             this.ALLOWED_CATCH_RANGE = 0.8;
@@ -90,9 +90,9 @@ namespace OsuCatchViewer.CatchAPI
             {
                 for (int ni = 1; ni <= n; ni++)
                 {
-                    G[0][ni] = CatchEffectiveness(StartObj, hasTipBananas[ni - 1]) * 1.5;
+                    G[0][ni] = CatchEffectiveness(StartObj, hasTipBananas[ni - 1], difficultyLevel) * 1.5;
                 }
-                G[0][n + 1] = (EndObj != null) ? CatchEffectiveness(StartObj, EndObj) * 1.5 : 1;
+                G[0][n + 1] = (EndObj != null) ? CatchEffectiveness(StartObj, EndObj, difficultyLevel) * 1.5 : 1;
             }
             // 结束
             // 如果后续有果子，则权重为1.5，必须接到
@@ -102,10 +102,10 @@ namespace OsuCatchViewer.CatchAPI
             }
             else
             {
-                G[0][n + 1] = (StartObj != null) ? CatchEffectiveness(StartObj, EndObj) * 1.5 : 1;
+                G[0][n + 1] = (StartObj != null) ? CatchEffectiveness(StartObj, EndObj, difficultyLevel) * 1.5 : 1;
                 for (int ni = 1; ni <= n; ni++)
                 {
-                    G[ni][n + 1] = CatchEffectiveness(hasTipBananas[ni - 1], EndObj) * 1.5;
+                    G[ni][n + 1] = CatchEffectiveness(hasTipBananas[ni - 1], EndObj, difficultyLevel) * 1.5;
                 }
             }
             // 香蕉间
@@ -113,7 +113,7 @@ namespace OsuCatchViewer.CatchAPI
             {
                 for (int nj = ni + 1; nj <= n; nj++)
                 {
-                    G[ni][nj] = CatchEffectiveness(hasTipBananas[ni - 1], hasTipBananas[nj - 1]);
+                    G[ni][nj] = CatchEffectiveness(hasTipBananas[ni - 1], hasTipBananas[nj - 1], difficultyLevel);
                 }
             }
 
@@ -131,6 +131,7 @@ namespace OsuCatchViewer.CatchAPI
                 nk = choice[nk];
                 if ((nk - 1) < n)
                 {
+                    catchBananaCount += 1;
                     if (needdash[nk] > 0)
                         colors[nk - 1] = new Color(255, 128, 128, 255);
                     else
@@ -138,6 +139,7 @@ namespace OsuCatchViewer.CatchAPI
                 }
             }
 
+            // Console.WriteLine("total " + catchBananaCount + " bananas catched.");
             return colors;
         }
 
@@ -147,7 +149,7 @@ namespace OsuCatchViewer.CatchAPI
         /// <param name="before"></param> 后一个物件
         /// <param name="after"></param> 前一个物件
         /// <returns></returns>
-        private double CatchEffectiveness(PalpableCatchHitObject before, PalpableCatchHitObject after)
+        private double CatchEffectiveness(PalpableCatchHitObject before, PalpableCatchHitObject after, int difficultyLevel)
         {
             // if 香蕉间的距离<=盘子速度*间隔时间 + 1/2 * 盘子大小  路径赋值1
             // else if 香蕉间的距离<=盘子速度*间隔时间 + 盘子大小  路径赋值 (盘子速度*间隔时间 + 盘子大小 - 香蕉间的距离) / (1/2 * 盘子大小)
@@ -156,8 +158,8 @@ namespace OsuCatchViewer.CatchAPI
             double btime = after.StartTime - before.StartTime - 1000 / 60 / 4;
             if (bspace <= btime * this.BASE_WALK_SPEED + this.halfCatcherWidth) return 1;
             else if (bspace <= btime * this.BASE_WALK_SPEED + this.catchWidth) return ((btime * this.BASE_WALK_SPEED + this.catchWidth - bspace) / this.halfCatcherWidth) / 2 + 0.5;
-            else if (bspace <= btime * this.BASE_DASH_SPEED + this.halfCatcherWidth) return 0.5;
-            else if (bspace <= btime * this.BASE_DASH_SPEED + this.catchWidth) return (btime * this.BASE_DASH_SPEED + this.catchWidth - bspace) / this.halfCatcherWidth / 2;
+            else if (difficultyLevel >= 2 && bspace <= btime * this.BASE_DASH_SPEED + this.halfCatcherWidth) return 0.5;
+            else if (difficultyLevel >= 3 && bspace <= btime * this.BASE_DASH_SPEED + this.catchWidth) return (btime * this.BASE_DASH_SPEED + this.catchWidth - bspace) / this.halfCatcherWidth / 2;
             else return -1;
         }
 

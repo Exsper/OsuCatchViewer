@@ -11,7 +11,13 @@ namespace OsuCatchViewer
         public IBeatmap Beatmap { get; set; }
         public ReplayAPI.Mods BeatmapMods { get; set; }
         public List<PalpableCatchHitObject> CatchHitObjects { get; set; }
-        public List<HasColorHitObject> HasColorHitObject { get; set; }
+        public List<HasColorHitObject> HasColorHitObjects { get; set; }
+        public List<HasColorHitObject> HasColorHitObjects1 { get; set; }
+        public int catchedBananas1 = 0;
+        public List<HasColorHitObject> HasColorHitObjects2 { get; set; }
+        public int catchedBananas2 = 0;
+        public List<HasColorHitObject> HasColorHitObjects3 { get; set; }
+        public int catchedBananas3 = 0;
         public List<HasColorHitObject> NearbyHitObjects { get; set; }
         private List<List<ReplayAPI.ReplayFrame>?> ReplayFrames { get; set; }
         public List<List<ReplayAPI.ReplayFrame>> NearbyFrames { get; set; }
@@ -108,7 +114,11 @@ namespace OsuCatchViewer
 
             State_PlaybackFlow = 0;
 
-            HasColorHitObject = CatchBeatmapAPI.GetTipColors(this.CatchHitObjects, this.Beatmap);
+            HasColorHitObjects1 = CatchBeatmapAPI.GetTipColors(this.CatchHitObjects, this.Beatmap, ref catchedBananas1, 1);
+            HasColorHitObjects2 = CatchBeatmapAPI.GetTipColors(this.CatchHitObjects, this.Beatmap, ref catchedBananas2, 2);
+            HasColorHitObjects3 = CatchBeatmapAPI.GetTipColors(this.CatchHitObjects, this.Beatmap, ref catchedBananas3, 3);
+
+            HasColorHitObjects = HasColorHitObjects3;
 
             /*
             if (r.ReplayFrames.Count > 0)
@@ -238,7 +248,7 @@ namespace OsuCatchViewer
                 {
                     break;
                 }
-                this.NearbyHitObjects.Add(this.HasColorHitObject[k]);
+                this.NearbyHitObjects.Add(this.HasColorHitObjects[k]);
             }
         }
 
