@@ -10,7 +10,6 @@
     <Deterministic>false</Deterministic>
     <SatelliteResourceLanguages>zh-Hans</SatelliteResourceLanguages>
     <RuntimeIdentifier>win-x86</RuntimeIdentifier>
-    <OutputType>Exe</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
