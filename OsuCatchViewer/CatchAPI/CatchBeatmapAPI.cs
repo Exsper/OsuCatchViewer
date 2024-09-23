@@ -68,6 +68,7 @@ namespace OsuCatchViewer.CatchAPI
 
             foreach (var modString in Mods)
             {
+                if (modString == "ScoreV2") continue;
                 Mod newMod = availableMods.FirstOrDefault(m => string.Equals(m.Acronym, modString, StringComparison.CurrentCultureIgnoreCase)) ?? throw new ArgumentException($"Invalid mod provided: {modString}");
                 mods.Add(newMod);
             }
