@@ -659,6 +659,7 @@
             // 
             // panel4
             // 
+            panel4.Anchor = AnchorStyles.Right;
             panel4.Controls.Add(BananaDifficulty3RadioButton);
             panel4.Controls.Add(BananaDifficulty2RadioButton);
             panel4.Controls.Add(BananaDifficulty1RadioButton);
