@@ -20,15 +20,15 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore OsuCatchViewer
       
-    - name: Build x86
-      run: dotnet build OsuCatchViewer -c Release /p:Platform=x86 --no-restore
+    - name: Build x64
+      run: dotnet build OsuCatchViewer -c Release /p:Platform=x64 --no-restore
 
-    - name: Create x86 release.zip
+    - name: Create x64 release.zip
       uses: thedoctor0/zip-release@master
       with:
         type: 'zip'
         filename: 'release.zip'
-        directory: 'OsuCatchViewer/bin/x86/Release/net8.0-windows7.0/win-x86/'
+        directory: 'OsuCatchViewer/bin/x64/Release/net8.0-windows7.0/win-x64/'
 
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
@@ -37,4 +37,4 @@ jobs:
         automatic_release_tag: "latest"
         title: release
         files: |
-          OsuCatchViewer/bin/x86/Release/net8.0-windows7.0/win-x86/release.zip
+          OsuCatchViewer/bin/x64/Release/net8.0-windows7.0/win-x64/release.zip
