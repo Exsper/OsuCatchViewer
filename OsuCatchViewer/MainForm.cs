@@ -1,4 +1,4 @@
-using OsuCatchViewer.CatchAPI;
+ï»¿using OsuCatchViewer.CatchAPI;
 using System.Diagnostics;
 
 
@@ -62,17 +62,17 @@ namespace OsuCatchViewer
                     }
                     catch
                     {
-                        MainForm.ErrorMessage("ÎŞ·¨ÔØÈëosu!.db¡£³¢ÊÔ±¸·İºóÉ¾³ı¸ÃÎÄ¼ş£¬´ò¿ªosu³ÌĞòÈÃosuÖØ½¨»º´æ¡£");
+                        MainForm.ErrorMessage("æ— æ³•è½½å…¥osu!.dbã€‚å°è¯•å¤‡ä»½ååˆ é™¤è¯¥æ–‡ä»¶ï¼Œæ‰“å¼€osuç¨‹åºè®©osué‡å»ºç¼“å­˜ã€‚");
                     }
                 }
                 else
                 {
-                    MainForm.ErrorMessage("osu!.dbÎÄ¼ş²»´æÔÚ£¬ÎŞ·¨ÏÔÊ¾Æ×Ãæ£¬½«Ö»Õ¹Ê¾replay¡£");
+                    MainForm.ErrorMessage("osu!.dbæ–‡ä»¶ä¸å­˜åœ¨ï¼Œæ— æ³•æ˜¾ç¤ºè°±é¢ï¼Œå°†åªå±•ç¤ºreplayã€‚");
                 }
             }
             else
             {
-                MainForm.ErrorMessage("Æ×Ãæ²»´æÔÚ£¬ÎŞ·¨ÏÔÊ¾Æ×Ãæ£¬½«Ö»Õ¹Ê¾replay¡£");
+                MainForm.ErrorMessage("è°±é¢ä¸å­˜åœ¨ï¼Œæ— æ³•æ˜¾ç¤ºè°±é¢ï¼Œå°†åªå±•ç¤ºreplayã€‚");
             }
             if (Directory.Exists(MainForm.Path_Replays))
             {
@@ -224,12 +224,12 @@ namespace OsuCatchViewer
 
                 if (this.Canvas.viewerManager != null)
                 {
-                    BananaDifficulty1_1RadioButton.Text = "·ÅÊÖ(" + this.Canvas.viewerManager.catchedBananas1_1 + ")";
-                    BananaDifficulty1_2RadioButton.Text = "Ë¯¾õ(" + this.Canvas.viewerManager.catchedBananas1_2 + ")";
-                    BananaDifficulty1_3RadioButton.Text = "ÇáËÉ(" + this.Canvas.viewerManager.catchedBananas1_3 + ")";
-                    BananaDifficulty1RadioButton.Text = "¼òµ¥(" + this.Canvas.viewerManager.catchedBananas1 + ")";
-                    BananaDifficulty2RadioButton.Text = "Ò»°ã(" + this.Canvas.viewerManager.catchedBananas2 + ")";
-                    BananaDifficulty3RadioButton.Text = "½ÏÄÑ(" + this.Canvas.viewerManager.catchedBananas3 + ")";
+                    BananaDifficulty1_1RadioButton.Text = "æ”¾æ‰‹(" + this.Canvas.viewerManager.catchedBananas1_1 + ")";
+                    BananaDifficulty1_2RadioButton.Text = "ç¡è§‰(" + this.Canvas.viewerManager.catchedBananas1_2 + ")";
+                    BananaDifficulty1_3RadioButton.Text = "è½»æ¾(" + this.Canvas.viewerManager.catchedBananas1_3 + ")";
+                    BananaDifficulty1RadioButton.Text = "ç®€å•(" + this.Canvas.viewerManager.catchedBananas1 + ")";
+                    BananaDifficulty2RadioButton.Text = "ä¸€èˆ¬(" + this.Canvas.viewerManager.catchedBananas2 + ")";
+                    BananaDifficulty3RadioButton.Text = "è¾ƒéš¾(" + this.Canvas.viewerManager.catchedBananas3 + ")";
                     if (BananaDifficulty1_1RadioButton.Checked) this.Canvas.viewerManager.HasColorHitObjects = this.Canvas.viewerManager.HasColorHitObjects1_1;
                     if (BananaDifficulty1_2RadioButton.Checked) this.Canvas.viewerManager.HasColorHitObjects = this.Canvas.viewerManager.HasColorHitObjects1_2;
                     if (BananaDifficulty1_3RadioButton.Checked) this.Canvas.viewerManager.HasColorHitObjects = this.Canvas.viewerManager.HasColorHitObjects1_3;
@@ -243,7 +243,7 @@ namespace OsuCatchViewer
             }
             catch (Exception e)
             {
-                MainForm.ErrorMessage("¶ÁÈ¡ÎÄ¼ş³ö´í\n¸½¼ÓĞÅÏ¢£º" + e.Message);
+                MainForm.ErrorMessage("è¯»å–æ–‡ä»¶å‡ºé”™\né™„åŠ ä¿¡æ¯ï¼š" + e.Message);
             }
         }
 
@@ -261,20 +261,20 @@ namespace OsuCatchViewer
             else if ((mods & 16) > 0) HRRadioButton.Checked = true;
             else NoneRadioButton.Checked = true;
 
-            if (this.Canvas.viewerManager.CurrentReplays[0] == null) replay1Radio.Text = "ºì(*)";
-            else replay1Radio.Text = "ºì(" + this.Canvas.viewerManager.CurrentReplays[0].PlayerName + ")";
-            if (this.Canvas.viewerManager.CurrentReplays[1] == null) replay2Radio.Text = "À¶(*)";
-            else replay2Radio.Text = "À¶(" + this.Canvas.viewerManager.CurrentReplays[1].PlayerName + ")";
-            if (this.Canvas.viewerManager.CurrentReplays[2] == null) replay3Radio.Text = "ÂÌ(*)";
-            else replay3Radio.Text = "ÂÌ(" + this.Canvas.viewerManager.CurrentReplays[2].PlayerName + ")";
-            if (this.Canvas.viewerManager.CurrentReplays[3] == null) replay4Radio.Text = "»Æ(*)";
-            else replay4Radio.Text = "»Æ(" + this.Canvas.viewerManager.CurrentReplays[3].PlayerName + ")";
-            if (this.Canvas.viewerManager.CurrentReplays[4] == null) replay5Radio.Text = "·Û(*)";
-            else replay5Radio.Text = "·Û(" + this.Canvas.viewerManager.CurrentReplays[4].PlayerName + ")";
-            if (this.Canvas.viewerManager.CurrentReplays[5] == null) replay6Radio.Text = "×Ï(*)";
-            else replay6Radio.Text = "×Ï(" + this.Canvas.viewerManager.CurrentReplays[5].PlayerName + ")";
-            if (this.Canvas.viewerManager.CurrentReplays[6] == null) replay7Radio.Text = "°×(*)";
-            else replay7Radio.Text = "°×(" + this.Canvas.viewerManager.CurrentReplays[6].PlayerName + ")";
+            if (this.Canvas.viewerManager.CurrentReplays[0] == null) replay1Radio.Text = "çº¢(*)";
+            else replay1Radio.Text = "çº¢(" + this.Canvas.viewerManager.CurrentReplays[0].PlayerName + ")";
+            if (this.Canvas.viewerManager.CurrentReplays[1] == null) replay2Radio.Text = "è“(*)";
+            else replay2Radio.Text = "è“(" + this.Canvas.viewerManager.CurrentReplays[1].PlayerName + ")";
+            if (this.Canvas.viewerManager.CurrentReplays[2] == null) replay3Radio.Text = "ç»¿(*)";
+            else replay3Radio.Text = "ç»¿(" + this.Canvas.viewerManager.CurrentReplays[2].PlayerName + ")";
+            if (this.Canvas.viewerManager.CurrentReplays[3] == null) replay4Radio.Text = "é»„(*)";
+            else replay4Radio.Text = "é»„(" + this.Canvas.viewerManager.CurrentReplays[3].PlayerName + ")";
+            if (this.Canvas.viewerManager.CurrentReplays[4] == null) replay5Radio.Text = "ç²‰(*)";
+            else replay5Radio.Text = "ç²‰(" + this.Canvas.viewerManager.CurrentReplays[4].PlayerName + ")";
+            if (this.Canvas.viewerManager.CurrentReplays[5] == null) replay6Radio.Text = "ç´«(*)";
+            else replay6Radio.Text = "ç´«(" + this.Canvas.viewerManager.CurrentReplays[5].PlayerName + ")";
+            if (this.Canvas.viewerManager.CurrentReplays[6] == null) replay7Radio.Text = "ç™½(*)";
+            else replay7Radio.Text = "ç™½(" + this.Canvas.viewerManager.CurrentReplays[6].PlayerName + ")";
 
             OpenTK.Graphics.Color4 c = Canvas.Color_Cursor[this.Canvas.viewerManager.State_ReplaySelected];
             this.cursorColorPanel.BackColor = System.Drawing.Color.FromArgb((int)(255 * c.R), (int)(255 * c.G), (int)(255 * c.B));
@@ -647,11 +647,11 @@ namespace OsuCatchViewer
             }
             catch (Exception ex)
             {
-                ErrorMessage("×Ô¶¯»ñÈ¡Æ×ÃæÊ§°Ü£¬ÇëÊÖ¶¯Ñ¡ÔñÆ×Ãæ¡£\n´íÎóĞÅÏ¢£º" + ex.Message);
+                ErrorMessage("è‡ªåŠ¨è·å–è°±é¢å¤±è´¥ï¼Œè¯·æ‰‹åŠ¨é€‰æ‹©è°±é¢ã€‚\né”™è¯¯ä¿¡æ¯ï¼š" + ex.Message);
             }
         }
 
-        private void »ñÈ¡osuµ±Ç°Æ×ÃæToolStripMenuItem_Click(object sender, EventArgs e)
+        private void è·å–osuå½“å‰è°±é¢ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             GetCurrentBeatmap();
         }

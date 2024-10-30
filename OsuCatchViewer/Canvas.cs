@@ -1,4 +1,4 @@
-using OpenTK;
+ï»¿using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using osu.Game.Rulesets.Catch.Objects;
@@ -123,7 +123,7 @@ namespace OsuCatchViewer
 
         public void Init()
         {
-            // ÅÌ×ÓÇø¼ä
+            // ç›˜å­åŒºé—´
             this.CatcherAreaHeight = 384f - 350f;
 
             ShowHelp = 2;
@@ -313,7 +313,7 @@ namespace OsuCatchViewer
                 HasColorHitObject hitObject = viewerManager.NearbyHitObjects[b];
                 // the song time relative to the hitobject start time
                 float diff = (float)(hitObject.GetHitObject().StartTime - viewerManager.SongPlayer.SongTime);
-                // 0=ÔÚ¶¥¶Ë 1=ÔÚÅÐ¶¨ÏßÉÏ >1=³¬¹ýÅÐ¶¨Ïß
+                // 0=åœ¨é¡¶ç«¯ 1=åœ¨åˆ¤å®šçº¿ä¸Š >1=è¶…è¿‡åˆ¤å®šçº¿
                 float alpha = 1.0f;
                 if (diff < viewerManager.ApproachTime * viewerManager.State_ARMul && diff > -(viewerManager.ApproachTime * (viewerManager.State_ARMul - 1)))
                 {

@@ -1,4 +1,4 @@
-using Microsoft.Win32;
+ï»¿using Microsoft.Win32;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
@@ -61,20 +61,20 @@ namespace OsuCatchViewer
                 if (osupath == "") osupath = @"C:\osu!\";
                 settings = new string[]
                 {
-                    @"# Ã¿ĞĞÒÔ#¿ªÍ·µÄÎª×¢ÊÍ",
-                    @"# ÇëÎğ¸ü¸ÄÉèÖÃË³Ğò",
+                    @"# æ¯è¡Œä»¥#å¼€å¤´çš„ä¸ºæ³¨é‡Š",
+                    @"# è¯·å‹¿æ›´æ”¹è®¾ç½®é¡ºåº",
                     @"",
-                    @"# osu!.dbÂ·¾¶",
+                    @"# osu!.dbè·¯å¾„",
                     osupath + @"osu!.db",
                     @"",
-                    @"# songsÎÄ¼ş¼ĞÂ·¾¶",
+                    @"# songsæ–‡ä»¶å¤¹è·¯å¾„",
                     osupath + @"songs\",
                     @"",
-                    @"# replayÎÄ¼ş¼ĞÂ·¾¶",
+                    @"# replayæ–‡ä»¶å¤¹è·¯å¾„",
                     osupath + @"replays\"
                 };
                 File.WriteAllLines(MainForm.Path_Settings, settings);
-                DialogResult reply = MessageBox.Show("ÒÑ×Ô¶¯´´½¨osu!Ïà¹ØÂ·¾¶ÅäÖÃÎÄ¼ş£¬ÊÇ·ñÍ£Ö¹³ÌĞò²¢Á¢¿Ì¼ì²éÆäÄÚÈİ£¿", "ÒÑ´´½¨ÅäÖÃÎÄ¼ş", MessageBoxButtons.YesNo);
+                DialogResult reply = MessageBox.Show("å·²è‡ªåŠ¨åˆ›å»ºosu!ç›¸å…³è·¯å¾„é…ç½®æ–‡ä»¶ï¼Œæ˜¯å¦åœæ­¢ç¨‹åºå¹¶ç«‹åˆ»æ£€æŸ¥å…¶å†…å®¹ï¼Ÿ", "å·²åˆ›å»ºé…ç½®æ–‡ä»¶", MessageBoxButtons.YesNo);
                 if (reply == DialogResult.Yes)
                 {
                     Program.OpenSettings();
