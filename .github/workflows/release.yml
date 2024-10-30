@@ -1,0 +1,43 @@
+name: Release
+
+on:
+  push:
+    tags:
+      "*"
+      
+jobs:
+  build:
+    runs-on: windows-2019
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Get latest release version number
+      id: get_version
+      uses: battila7/get-version-action@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore OsuCatchViewer
+      
+    - name: Build x86
+      run: dotnet build OsuCatchViewer -c Release /p:Platform=x86 --no-restore
+
+    - name: Create x86 release.zip
+      uses: thedoctor0/zip-release@master
+      with:
+        type: 'zip'
+        filename: 'release.zip'
+        directory: 'OsuCatchViewer/bin/x86/Release/net8.0-windows7.0/win-x86/'
+
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        prerelease: false
+        title: 发布版本 ${{ steps.get_version.outputs.version-without-v }}
+        files: |
+          OsuCatchViewer/bin/x86/Release/net8.0-windows7.0/win-x86/release.zip
