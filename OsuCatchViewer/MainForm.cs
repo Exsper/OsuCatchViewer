@@ -224,9 +224,15 @@ namespace OsuCatchViewer
 
                 if (this.Canvas.viewerManager != null)
                 {
+                    BananaDifficulty1_1RadioButton.Text = "放手(" + this.Canvas.viewerManager.catchedBananas1_1 + ")";
+                    BananaDifficulty1_2RadioButton.Text = "睡觉(" + this.Canvas.viewerManager.catchedBananas1_2 + ")";
+                    BananaDifficulty1_3RadioButton.Text = "轻松(" + this.Canvas.viewerManager.catchedBananas1_3 + ")";
                     BananaDifficulty1RadioButton.Text = "简单(" + this.Canvas.viewerManager.catchedBananas1 + ")";
                     BananaDifficulty2RadioButton.Text = "一般(" + this.Canvas.viewerManager.catchedBananas2 + ")";
                     BananaDifficulty3RadioButton.Text = "较难(" + this.Canvas.viewerManager.catchedBananas3 + ")";
+                    if (BananaDifficulty1_1RadioButton.Checked) this.Canvas.viewerManager.HasColorHitObjects = this.Canvas.viewerManager.HasColorHitObjects1_1;
+                    if (BananaDifficulty1_2RadioButton.Checked) this.Canvas.viewerManager.HasColorHitObjects = this.Canvas.viewerManager.HasColorHitObjects1_2;
+                    if (BananaDifficulty1_3RadioButton.Checked) this.Canvas.viewerManager.HasColorHitObjects = this.Canvas.viewerManager.HasColorHitObjects1_3;
                     if (BananaDifficulty1RadioButton.Checked) this.Canvas.viewerManager.HasColorHitObjects = this.Canvas.viewerManager.HasColorHitObjects1;
                     if (BananaDifficulty2RadioButton.Checked) this.Canvas.viewerManager.HasColorHitObjects = this.Canvas.viewerManager.HasColorHitObjects2;
                     if (BananaDifficulty3RadioButton.Checked) this.Canvas.viewerManager.HasColorHitObjects = this.Canvas.viewerManager.HasColorHitObjects3;
@@ -686,6 +692,24 @@ namespace OsuCatchViewer
         {
             if (this.Canvas.viewerManager != null)
                 this.Canvas.viewerManager.HasColorHitObjects = this.Canvas.viewerManager.HasColorHitObjects3;
+        }
+
+        private void BananaDifficulty1_3RadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.Canvas.viewerManager != null)
+                this.Canvas.viewerManager.HasColorHitObjects = this.Canvas.viewerManager.HasColorHitObjects1_3;
+        }
+
+        private void BananaDifficulty1_2RadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.Canvas.viewerManager != null)
+                this.Canvas.viewerManager.HasColorHitObjects = this.Canvas.viewerManager.HasColorHitObjects1_2;
+        }
+
+        private void BananaDifficulty1_1RadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.Canvas.viewerManager != null)
+                this.Canvas.viewerManager.HasColorHitObjects = this.Canvas.viewerManager.HasColorHitObjects1_1;
         }
     }
 }

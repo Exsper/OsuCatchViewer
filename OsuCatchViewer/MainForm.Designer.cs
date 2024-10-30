@@ -81,6 +81,9 @@
             label6 = new Label();
             Canvas = new Canvas();
             panel4 = new Panel();
+            BananaDifficulty1_1RadioButton = new RadioButton();
+            BananaDifficulty1_2RadioButton = new RadioButton();
+            BananaDifficulty1_3RadioButton = new RadioButton();
             BananaDifficulty3RadioButton = new RadioButton();
             BananaDifficulty2RadioButton = new RadioButton();
             BananaDifficulty1RadioButton = new RadioButton();
@@ -660,20 +663,56 @@
             // panel4
             // 
             panel4.Anchor = AnchorStyles.Right;
+            panel4.Controls.Add(BananaDifficulty1_1RadioButton);
+            panel4.Controls.Add(BananaDifficulty1_2RadioButton);
+            panel4.Controls.Add(BananaDifficulty1_3RadioButton);
             panel4.Controls.Add(BananaDifficulty3RadioButton);
             panel4.Controls.Add(BananaDifficulty2RadioButton);
             panel4.Controls.Add(BananaDifficulty1RadioButton);
             panel4.Controls.Add(label7);
             panel4.Location = new Point(1031, 246);
             panel4.Name = "panel4";
-            panel4.Size = new Size(104, 132);
+            panel4.Size = new Size(104, 196);
             panel4.TabIndex = 34;
+            // 
+            // BananaDifficulty1_1RadioButton
+            // 
+            BananaDifficulty1_1RadioButton.AutoSize = true;
+            BananaDifficulty1_1RadioButton.Location = new Point(15, 37);
+            BananaDifficulty1_1RadioButton.Name = "BananaDifficulty1_1RadioButton";
+            BananaDifficulty1_1RadioButton.Size = new Size(86, 21);
+            BananaDifficulty1_1RadioButton.TabIndex = 6;
+            BananaDifficulty1_1RadioButton.Text = "放手 (未知)";
+            BananaDifficulty1_1RadioButton.UseVisualStyleBackColor = true;
+            BananaDifficulty1_1RadioButton.CheckedChanged += BananaDifficulty1_1RadioButton_CheckedChanged;
+            // 
+            // BananaDifficulty1_2RadioButton
+            // 
+            BananaDifficulty1_2RadioButton.AutoSize = true;
+            BananaDifficulty1_2RadioButton.Location = new Point(15, 64);
+            BananaDifficulty1_2RadioButton.Name = "BananaDifficulty1_2RadioButton";
+            BananaDifficulty1_2RadioButton.Size = new Size(86, 21);
+            BananaDifficulty1_2RadioButton.TabIndex = 5;
+            BananaDifficulty1_2RadioButton.Text = "睡觉 (未知)";
+            BananaDifficulty1_2RadioButton.UseVisualStyleBackColor = true;
+            BananaDifficulty1_2RadioButton.CheckedChanged += BananaDifficulty1_2RadioButton_CheckedChanged;
+            // 
+            // BananaDifficulty1_3RadioButton
+            // 
+            BananaDifficulty1_3RadioButton.AutoSize = true;
+            BananaDifficulty1_3RadioButton.Location = new Point(15, 91);
+            BananaDifficulty1_3RadioButton.Name = "BananaDifficulty1_3RadioButton";
+            BananaDifficulty1_3RadioButton.Size = new Size(86, 21);
+            BananaDifficulty1_3RadioButton.TabIndex = 4;
+            BananaDifficulty1_3RadioButton.Text = "轻松 (未知)";
+            BananaDifficulty1_3RadioButton.UseVisualStyleBackColor = true;
+            BananaDifficulty1_3RadioButton.CheckedChanged += BananaDifficulty1_3RadioButton_CheckedChanged;
             // 
             // BananaDifficulty3RadioButton
             // 
             BananaDifficulty3RadioButton.AutoSize = true;
             BananaDifficulty3RadioButton.Checked = true;
-            BananaDifficulty3RadioButton.Location = new Point(15, 90);
+            BananaDifficulty3RadioButton.Location = new Point(15, 172);
             BananaDifficulty3RadioButton.Name = "BananaDifficulty3RadioButton";
             BananaDifficulty3RadioButton.Size = new Size(86, 21);
             BananaDifficulty3RadioButton.TabIndex = 3;
@@ -685,7 +724,7 @@
             // BananaDifficulty2RadioButton
             // 
             BananaDifficulty2RadioButton.AutoSize = true;
-            BananaDifficulty2RadioButton.Location = new Point(15, 63);
+            BananaDifficulty2RadioButton.Location = new Point(15, 145);
             BananaDifficulty2RadioButton.Name = "BananaDifficulty2RadioButton";
             BananaDifficulty2RadioButton.Size = new Size(86, 21);
             BananaDifficulty2RadioButton.TabIndex = 2;
@@ -696,7 +735,7 @@
             // BananaDifficulty1RadioButton
             // 
             BananaDifficulty1RadioButton.AutoSize = true;
-            BananaDifficulty1RadioButton.Location = new Point(15, 36);
+            BananaDifficulty1RadioButton.Location = new Point(15, 118);
             BananaDifficulty1RadioButton.Name = "BananaDifficulty1RadioButton";
             BananaDifficulty1RadioButton.Size = new Size(86, 21);
             BananaDifficulty1RadioButton.TabIndex = 1;
@@ -824,6 +863,9 @@
         public RadioButton BananaDifficulty3RadioButton;
         public RadioButton BananaDifficulty2RadioButton;
         public RadioButton BananaDifficulty1RadioButton;
+        public RadioButton BananaDifficulty1_1RadioButton;
+        public RadioButton BananaDifficulty1_2RadioButton;
+        public RadioButton BananaDifficulty1_3RadioButton;
     }
 }
 

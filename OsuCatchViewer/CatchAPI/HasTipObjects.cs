@@ -148,6 +148,7 @@ namespace OsuCatchViewer.CatchAPI
         /// </summary>
         /// <param name="before"></param> 后一个物件
         /// <param name="after"></param> 前一个物件
+        /// <param name="difficultyLevel"></param> 难度系数 -3=放手 -2=睡觉 -1=轻松 1=简单 2=一般 3=较难
         /// <returns></returns>
         private double CatchEffectiveness(PalpableCatchHitObject before, PalpableCatchHitObject after, int difficultyLevel)
         {
@@ -156,8 +157,12 @@ namespace OsuCatchViewer.CatchAPI
             // else if 香蕉间的距离>盘子速度*间隔时间 + 盘子大小  断路
             double bspace = Math.Abs(before.EffectiveX - after.EffectiveX);
             double btime = after.StartTime - before.StartTime - 1000 / 60 / 4;
-            if (bspace <= btime * this.BASE_WALK_SPEED + this.halfCatcherWidth) return 1;
-            else if (bspace <= btime * this.BASE_WALK_SPEED + this.catchWidth) return ((btime * this.BASE_WALK_SPEED + this.catchWidth - bspace) / this.halfCatcherWidth) / 2 + 0.5;
+            double walkSpeedFactor = 1;
+            if (difficultyLevel == -3) walkSpeedFactor = 0.1;
+            else if (difficultyLevel == -2) walkSpeedFactor = 0.25;
+            else if (difficultyLevel == -1) walkSpeedFactor = 0.6;
+            if (bspace <= btime * this.BASE_WALK_SPEED * walkSpeedFactor + this.halfCatcherWidth) return 1;
+            else if (bspace <= btime * this.BASE_WALK_SPEED * walkSpeedFactor + this.catchWidth) return ((btime * this.BASE_WALK_SPEED * walkSpeedFactor + this.catchWidth - bspace) / this.halfCatcherWidth) / 2 + 0.5;
             else if (difficultyLevel >= 2 && bspace <= btime * this.BASE_DASH_SPEED + this.halfCatcherWidth) return 0.5;
             else if (difficultyLevel >= 3 && bspace <= btime * this.BASE_DASH_SPEED + this.catchWidth) return (btime * this.BASE_DASH_SPEED + this.catchWidth - bspace) / this.halfCatcherWidth / 2;
             else return -1;

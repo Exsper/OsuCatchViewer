@@ -14,6 +14,12 @@ namespace OsuCatchViewer
         public List<HasColorHitObject> HasColorHitObjects { get; set; }
         public List<HasColorHitObject> HasColorHitObjects1 { get; set; }
         public int catchedBananas1 = 0;
+        public List<HasColorHitObject> HasColorHitObjects1_1 { get; set; }
+        public int catchedBananas1_1 = 0;
+        public List<HasColorHitObject> HasColorHitObjects1_2 { get; set; }
+        public int catchedBananas1_2 = 0;
+        public List<HasColorHitObject> HasColorHitObjects1_3 { get; set; }
+        public int catchedBananas1_3 = 0;
         public List<HasColorHitObject> HasColorHitObjects2 { get; set; }
         public int catchedBananas2 = 0;
         public List<HasColorHitObject> HasColorHitObjects3 { get; set; }
@@ -114,6 +120,9 @@ namespace OsuCatchViewer
 
             State_PlaybackFlow = 0;
 
+            HasColorHitObjects1_1 = CatchBeatmapAPI.GetTipColors(this.CatchHitObjects, this.Beatmap, ref catchedBananas1_1, -3);
+            HasColorHitObjects1_2 = CatchBeatmapAPI.GetTipColors(this.CatchHitObjects, this.Beatmap, ref catchedBananas1_2, -2);
+            HasColorHitObjects1_3 = CatchBeatmapAPI.GetTipColors(this.CatchHitObjects, this.Beatmap, ref catchedBananas1_3, -1);
             HasColorHitObjects1 = CatchBeatmapAPI.GetTipColors(this.CatchHitObjects, this.Beatmap, ref catchedBananas1, 1);
             HasColorHitObjects2 = CatchBeatmapAPI.GetTipColors(this.CatchHitObjects, this.Beatmap, ref catchedBananas2, 2);
             HasColorHitObjects3 = CatchBeatmapAPI.GetTipColors(this.CatchHitObjects, this.Beatmap, ref catchedBananas3, 3);
