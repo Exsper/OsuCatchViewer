@@ -51,6 +51,15 @@ namespace OsuDbAPI
             this.fileReader.ReadDouble();
         }
 
+        private void readIntFloatPair()
+        {
+            // no need for star difficulty, so we don't keep this data
+            this.fileReader.ReadByte();
+            this.fileReader.ReadInt32();
+            this.fileReader.ReadByte();
+            this.fileReader.ReadSingle();
+        }
+
         private void readTimingPoint()
         {
             // no need for timing point, so we don't keep this data either
@@ -89,7 +98,8 @@ namespace OsuDbAPI
                 n = this.fileReader.ReadInt32();
                 for (int j = 0; j < n; j++)
                 {
-                    this.readIntDoublePair();
+                    if (this.Version < 20250107) this.readIntDoublePair();
+                    else this.readIntFloatPair();
                 }
             }
             beatmap.DrainTimeSeconds = this.fileReader.ReadInt32();
